@@ -107,15 +107,17 @@ Ai-Journey/
 ├── .gitignore
 ├── Week1/
 │   └── Statistical_EDA--Titanic_Dataset/
-├── week2/
+├── Week2/
 │   └── numpy-data-analyzer/
 │       ├── analyzer.py
 │       ├── tested.csv
 │       ├── results/
 │       │   └── survival_chart.png
 │       └── README.md
-└── WEEK3/
-    └── titanic-explorer/
+├── Week3/                           ← Week 3 Project ✅ "Titanic Data Explorer"
+│   └── Titanic_Data_Explorer/
+└── Week4/                           ← Week 4 Project 🔜 "Student Performance Predictor"
+    └── Student_Performance_Predictor/
 └── README.md       ← you are here
 ```
 
