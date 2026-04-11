@@ -45,7 +45,7 @@ print(f"Bias:   {bias:.2f} (0 hours = {bias:.1f} marks baseline)")
 
 print("\n PART 2: Training with Sklearn...")
 
-X_2d = X.reshape(-1, 1)  # sklearn needs 2D input
+X_2d = X.reshape(-1, 1) 
 sklearn_model = SklearnLR()
 sklearn_model.fit(X_2d, y)
 
