@@ -2,6 +2,7 @@ import numpy as np
 from collections import Counter
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, confusion_matrix
 
 iris = load_iris()
 
@@ -45,3 +46,10 @@ knn.fit(X_train, y_train)
 prediction = knn.predict(X_test)
 print("Predictions:", prediction)
 print("Actual:     ", y_test)
+# Accuracy Score
+accuracy = accuracy_score(y_test, prediction)
+print("Accuracy:", accuracy)
+# Confusion Matrix
+cm = (confusion_matrix(y_test, prediction))
+print("confusion_matrix:")
+print(cm)
