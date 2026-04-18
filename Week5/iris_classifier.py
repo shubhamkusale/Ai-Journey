@@ -26,11 +26,22 @@ class KNN:
     def euclidean_distance(self, x1, x2):
         return (np.sqrt(np.sum((x1 - x2)**2)))
     
-    def predict(self, x):
+    def predict(self, X):
         predictions = []
 
         for x in X:
-            distances = [self.euclidean_distance(X , X_train)
-                         for X_train in self.X_train]
-            
+            distances = [self.euclidean_distance(x, x_train)
+                        for x_train in self.X_train] 
             k_indices = np.argsort(distances)[:self.k]
+            
+            k_labels = [self.y_train[i] for i in k_indices]
+            prediction = Counter(k_labels).most_common(1)[0][0]
+
+            predictions.append(prediction)
+        return np.array(predictions)
+
+knn = KNN(k =3)
+knn.fit(X_train, y_train)
+prediction = knn.predict(X_test)
+print("Predictions:", prediction)
+print("Actual:     ", y_test)
