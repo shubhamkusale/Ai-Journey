@@ -27,6 +27,9 @@ class KNN:
     def euclidean_distance(self, x1, x2):
         return (np.sqrt(np.sum((x1 - x2)**2)))
     
+    def Manhattan_distance(self, x1, x2):
+        return np.sum(np.abs(x1 - x2))
+    
     def predict(self, X):
         predictions = []
 
@@ -53,3 +56,14 @@ print("Accuracy:", accuracy)
 cm = (confusion_matrix(y_test, prediction))
 print("confusion_matrix:")
 print(cm)
+# Elbow Method
+k_values = range(1, 20, 2)  
+accuracies = []
+
+for k in k_values:
+    knn = KNN(k=k)
+    knn.fit(X_train, y_train)
+    pred = knn.predict(X_test)
+    acc = accuracy_score(y_test, pred)
+    accuracies.append(acc)
+    print(f"K={k} → Accuracy={acc*100:.1f}%")
