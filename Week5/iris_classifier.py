@@ -3,6 +3,7 @@ from collections import Counter
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix
+import matplotlib.pyplot as plt
 
 iris = load_iris()
 
@@ -67,3 +68,37 @@ for k in k_values:
     acc = accuracy_score(y_test, pred)
     accuracies.append(acc)
     print(f"K={k} → Accuracy={acc*100:.1f}%")
+
+    # Visualization - only using 2 features
+X_vis = X[:, :2]
+
+# Split again with 2 features only
+X_train_vis, X_test_vis, y_train_vis, y_test_vis = train_test_split(
+    X_vis, y, test_size=0.2, random_state=42
+)
+
+# Train KNN on 2 features
+knn_vis = KNN(k=3)
+knn_vis.fit(X_train_vis, y_train_vis)
+
+# Create mesh grid
+x_min, x_max = X_vis[:, 0].min() - 1, X_vis[:, 0].max() + 1
+y_min, y_max = X_vis[:, 1].min() - 1, X_vis[:, 1].max() + 1
+
+xx, yy = np.meshgrid(
+    np.arange(x_min, x_max, 0.1),
+    np.arange(y_min, y_max, 0.1)
+)
+
+# Predict every point in mesh
+Z = knn_vis.predict(np.c_[xx.ravel(), yy.ravel()])
+Z = Z.reshape(xx.shape)
+
+# Plot
+plt.figure(figsize=(10, 6))
+plt.contourf(xx, yy, Z, alpha=0.3)
+plt.scatter(X_vis[:, 0], X_vis[:, 1], c=y, edgecolors='black')
+plt.xlabel("Sepal Length")
+plt.ylabel("Sepal Width")
+plt.title("KNN Decision Boundary - Iris Dataset")
+plt.show()
