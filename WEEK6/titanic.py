@@ -1,6 +1,10 @@
 import pandas as pd
 import seaborn as sns
 from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, classification_report
 # Load dataset
 df = sns.load_dataset('titanic')
 
@@ -37,3 +41,23 @@ print("=== DATA READY FOR TRAINING ===")
 print(f"Training samples: {X_train.shape[0]}")
 print(f"Test samples: {X_test.shape[0]}")
 print(f"Features: {list(X.columns)}")
+
+
+#Training all threee model knn, decision tree random forest
+
+dt =DecisionTreeClassifier(max_depth=5, random_state=42)
+dt.fit(X_train, y_train)
+
+rf = RandomForestClassifier(n_estimators=100, random_state= 42)
+rf.fit(X_train, y_train)
+
+knn= KNeighborsClassifier(n_neighbors= 5)
+knn.fit(X_train, y_train)
+
+dt_pred = dt.predict(X_test)
+rf_pred = rf.predict(X_test)
+knn_pred = knn.predict(X_test)\
+    
+print("Decision Tree:", accuracy_score(y_test, dt_pred))
+print("Random Forest:", accuracy_score(y_test, rf_pred))
+print("KNN          :", accuracy_score(y_test, knn_pred))
