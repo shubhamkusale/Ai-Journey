@@ -56,8 +56,17 @@ knn.fit(X_train, y_train)
 
 dt_pred = dt.predict(X_test)
 rf_pred = rf.predict(X_test)
-knn_pred = knn.predict(X_test)\
+knn_pred = knn.predict(X_test)
     
 print("Decision Tree:", accuracy_score(y_test, dt_pred))
 print("Random Forest:", accuracy_score(y_test, rf_pred))
 print("KNN          :", accuracy_score(y_test, knn_pred))
+
+print("\n--- Decision Tree ---")
+print(classification_report(y_test, dt_pred))
+
+print("\n--- Random Forest ---")
+print(classification_report(y_test, rf_pred))
+
+print("\n--- KNN ---")
+print(classification_report(y_test, knn_pred))
