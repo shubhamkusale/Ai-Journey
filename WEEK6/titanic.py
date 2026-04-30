@@ -5,6 +5,9 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, classification_report
+import matplotlib.pyplot as plt
+import numpy as np
+
 # Load dataset
 df = sns.load_dataset('titanic')
 
@@ -70,3 +73,22 @@ print(classification_report(y_test, rf_pred))
 
 print("\n--- KNN ---")
 print(classification_report(y_test, knn_pred))
+
+# Get feature importances from Random Forest
+features = X.columns
+importances = rf.feature_importances_
+indices = np.argsort(importances)[::-1]
+
+# Plot
+plt.figure(figsize=(10, 6))
+plt.bar(range(len(features)), importances[indices])
+plt.xticks(range(len(features)), [features[i] for i in indices], rotation=45)
+plt.title('Feature Importance — Random Forest')
+plt.tight_layout()
+plt.savefig('feature_importance.png')
+plt.show()
+
+# Print ranked list
+print("\nFeature Ranking:")
+for i in range(len(features)):
+    print(f"{i+1}. {features[indices[i]]}: {importances[indices[i]]:.4f}")
