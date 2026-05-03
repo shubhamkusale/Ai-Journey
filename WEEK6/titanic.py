@@ -7,6 +7,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, classification_report
 import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.svm import SVC
 
 # Load dataset
 df = sns.load_dataset('titanic')
@@ -92,3 +93,10 @@ plt.show()
 print("\nFeature Ranking:")
 for i in range(len(features)):
     print(f"{i+1}. {features[indices[i]]}: {importances[indices[i]]:.4f}")
+
+svm = SVC(kernel='rbf', random_state= 42)
+svm.fit(X_train, y_train)
+
+svm_pred = svm.predict(X_test)
+
+print("SVm", accuracy_score(y_test, svm_pred))

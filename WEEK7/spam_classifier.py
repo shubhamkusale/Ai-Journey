@@ -3,7 +3,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
-
+from sklearn.svm import SVC
 # Load dataset
 df = pd.read_csv('https://raw.githubusercontent.com/justmarkham/pycon-2016-tutorial/master/data/sms.tsv', 
                  sep='\t', header=None, names=['label', 'message'])
@@ -43,3 +43,4 @@ def predict_email(email):
 
 print(predict_email("Congratulations! You won a free iPhone click now"))
 print(predict_email("Hey are we meeting tomorrow at 3pm?"))
+
