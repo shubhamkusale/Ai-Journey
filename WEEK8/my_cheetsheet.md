@@ -29,3 +29,5 @@ Next time with a new dataset — first step is always:
 2. What does each column mean?
 3. What are we trying to predict?
 4. What's the class distribution?
+
+The 4 boxes are True Positive, False Positive, False Negative, True Negative. Write these in your cheatsheet right now.

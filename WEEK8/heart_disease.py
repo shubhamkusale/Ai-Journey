@@ -6,6 +6,10 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.datasets import load_breast_cancer
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.model_selection import cross_val_score
 
 data = load_breast_cancer()
 df = pd.DataFrame(data.data, columns=data.feature_names)
@@ -49,3 +53,22 @@ print(classification_report(y_test, lr_pred))
 
 print("\n--- SVM ---")
 print(classification_report(y_test, svm_pred))
+
+cm = confusion_matrix(y_test, lr_pred)
+print(cm)
+
+sns.heatmap(cm, annot=True, fmt='d', 
+            xticklabels=['Malignant','Benign'],
+            yticklabels=['Malignant','Benign'])
+plt.title('Confusion Matrix - Logistic Regression')
+plt.ylabel('Actual')
+plt.xlabel('Predicted')
+plt.savefig('confusion_matrix.png')
+plt.show()
+
+lr_scores = cross_val_score(LogisticRegression(max_iter=10000),
+                                                X_train_scaled, y_train, cv = 5)
+
+print("LR CV srores", lr_scores)
+print("LR Average:", lr_scores.mean())
+print("LR Std Dev:", lr_scores.std())   
