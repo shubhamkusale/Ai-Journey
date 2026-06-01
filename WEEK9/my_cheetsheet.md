@@ -41,3 +41,7 @@ o=circle, s=square, ^=triangle, *=star
 StandardScaler mean=0 means: average value becomes zero
 Values above average → positive
 Values below average → negative
+
+Inertia = total distance from points to centroid (low = good)
+n_init=10 = run KMeans 10 times, pick best result
+km.labels_ = which cluster each point belongs to

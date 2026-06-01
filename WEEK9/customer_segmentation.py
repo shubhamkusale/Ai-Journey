@@ -28,3 +28,18 @@ plt.ylabel('Inertia')
 plt.title('Elbow Method — Finding Optimal K')
 plt.savefig('elbow_curve.png')
 plt.show()
+
+Kmeans = KMeans(n_clusters= 5, random_state= 42, n_init= 10)
+df['clusters'] =    Kmeans.fit_predict(X_scaled)
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Annual Income (k$)'], df['Spending Score (1-100)'], 
+            c=df['clusters'], cmap='viridis')
+plt.xlabel('Annual Income (k$)')
+plt.ylabel('Spending Score (1-100)')
+plt.title('Customer Segments')
+plt.colorbar(label='Cluster')
+plt.savefig('clusters.png')
+plt.show()
+
+#Profile each cluster(average)
+print(df.groupby('clusters')[['Age', 'Annual Income (k$)', 'Spending Score (1-100)']].mean())
