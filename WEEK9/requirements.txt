@@ -2,3 +2,4 @@ streamlit
 scikit-learn
 pandas
 numpy
+venv/
