@@ -1,0 +1,6 @@
+@"
+streamlit
+scikit-learn
+numpy
+joblib
+"@ | Set-Content WEEK8\requirements.txt
