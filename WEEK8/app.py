@@ -4,9 +4,10 @@ import numpy as np
 from sklearn.datasets import load_breast_cancer
 
 # load the trained model + scaler we saved
-model = joblib.load('cancer_model.pkl')
-scaler = joblib.load('cancer_scaler.pkl')
-
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model = joblib.load(os.path.join(BASE_DIR, 'cancer_model.pkl'))
+scaler = joblib.load(os.path.join(BASE_DIR, 'cancer_scaler.pkl'))
 # get feature names + a real sample to use as "example"
 data = load_breast_cancer()
 feature_names = data.feature_names
