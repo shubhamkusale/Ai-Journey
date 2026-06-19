@@ -29,6 +29,6 @@ for epoch in range(1000):
 
 
 # Ask the trained network: 5 hours — pass or fail?
-test = torch.tensor([[5.0]])     # put 5.0 in the blank
+test = torch.tensor([[5.0]])     
 answer = model(test)              # pass your test tensor through the trained model
 print(answer)                     # show the result

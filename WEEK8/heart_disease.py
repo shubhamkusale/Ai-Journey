@@ -10,6 +10,8 @@ from sklearn.metrics import confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.model_selection import cross_val_score
+import joblib
+
 
 data = load_breast_cancer()
 df = pd.DataFrame(data.data, columns=data.feature_names)
@@ -72,3 +74,7 @@ lr_scores = cross_val_score(LogisticRegression(max_iter=10000),
 print("LR CV srores", lr_scores)
 print("LR Average:", lr_scores.mean())
 print("LR Std Dev:", lr_scores.std())   
+
+joblib.dump(svm, 'cancer_model.pkl')
+joblib.dump(scaler, 'cancer_scaler.pkl')
+print("Model and scaler saved!")
