@@ -10,7 +10,7 @@ between 0 and 1 (fail or pass). The network learns by guessing, measuring how
 wrong it is, and nudging its weights thousands of times until the guesses are right. 
 ## What I learned
 - Built a network with nn.Sequential (Linear → ReLU → Linear → Sigmoid)
-- Trained it with a loss function (BCELoss) and an optimizer (Adam)
+- Trained it with a loss function (BCELoss) and an optimizer (Adam) 
 - Watched the loss drop from ~1.0 to ~0.002 over 1000 epochs
 - Queried the trained model: 5 hours studied → 0.88 (likely pass)
 
