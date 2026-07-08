@@ -15,50 +15,44 @@ test_data = datasets.MNIST(root='./data', train=False, download=True, transform=
 train_loader = DataLoader(train_data, batch_size=64, shuffle=True)
 test_loader = DataLoader(test_data, batch_size=64, shuffle=False)
 
-# 2. BUILD THE CNN
 class CNN(nn.Module):
     def __init__(self):
         super(CNN, self).__init__()
         
-        # LAYER 1: first conv layer
-        # in_channels=1 (grayscale), out_channels=16 (16 filters), kernel_size=3 (3x3 filter)
         self.conv1 = nn.Conv2d(1, 16, kernel_size=3, padding=1)  # detects edges
         self.relu1 = nn.ReLU()
-        self.pool1 = nn.MaxPool2d(2, 2)  # 2x2 pooling → image shrinks 28x28 → 14x14
+        self.pool1 = nn.MaxPool2d(2, 2)  
         
-        # LAYER 2: second conv layer
-        self.conv2 = nn.Conv2d(16, 32, kernel_size=3, padding=1)  # detects shapes
+        self.conv2 = nn.Conv2d(16, 32, kernel_size=3, padding=1)
         self.relu2 = nn.ReLU()
-        self.pool2 = nn.MaxPool2d(2, 2)  # shrinks 14x14 → 7x7
+        self.pool2 = nn.MaxPool2d(2, 2) 
         
-        # LAYER 3: flatten + fully connected → final answer
-        self.fc1 = nn.Linear(32 * 7 * 7, 128)  # flatten: 32 filters × 7×7 grid
+        self.fc1 = nn.Linear(32 * 7 * 7, 128) 
         self.relu3 = nn.ReLU()
-        self.fc2 = nn.Linear(128, 10)  # 10 outputs = digits 0-9
+        self.fc2 = nn.Linear(128, 10) 
 
     def forward(self, x):
-        x = self.pool1(self.relu1(self.conv1(x)))  # conv → ReLU → pool
-        x = self.pool2(self.relu2(self.conv2(x)))  # conv → ReLU → pool
-        x = x.view(-1, 32 * 7 * 7)               # FLATTEN
-        x = self.relu3(self.fc1(x))               # fully connected layer
-        x = self.fc2(x)                           # final output (10 numbers)
+        x = self.pool1(self.relu1(self.conv1(x)))  
+        x = self.pool2(self.relu2(self.conv2(x)))  
+        x = x.view(-1, 32 * 7 * 7)               
+        x = self.relu3(self.fc1(x))               
+        x = self.fc2(x)                           
         return x
 
 # 3. SETUP
 model = CNN()
-criterion = nn.CrossEntropyLoss()   # loss for multi-class (10 digits)
+criterion = nn.CrossEntropyLoss()   
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 # 4. TRAIN
 print("Training...")
-for epoch in range(5):  # 5 passes through all data
+for epoch in range(5): 
     total_loss = 0
     for images, labels in train_loader:
-        optimizer.zero_grad()          # clear old gradients
-        outputs = model(images)        # forward pass
-        loss = criterion(outputs, labels)  # measure loss
-        loss.backward()               # backprop (chain rule)
-        optimizer.step()              # nudge weights
+        optimizer.zero_grad()         
+        outputs = model(images)        
+        loss = criterion(outputs, labels)  
+        optimizer.step()              
         total_loss += loss.item()
     print(f"Epoch {epoch+1}/5, Loss: {total_loss/len(train_loader):.4f}")
 
