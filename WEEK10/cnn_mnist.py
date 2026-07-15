@@ -76,3 +76,6 @@ with torch.no_grad():
         correct += (predicted == labels).sum().item()
 
 print(f"Accuracy: {100 * correct / total:.2f}%")
+
+torch.save(model.state_dict(), 'mnist_cnn.pth')
+print("Model saved!")
