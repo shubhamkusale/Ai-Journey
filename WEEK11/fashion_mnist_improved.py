@@ -20,3 +20,10 @@ test_transform = transforms.Compose([
 train_data = datasets.FashionMNIST(root='.data', train=True, download=True,transform=train_transform)
 test_data = datasets.FashionMNIST(root='.data', train=False, download=True,transform=train_transform)
 
+train_Size = int(0.8 * len(train_data))
+val_size = len(train_data) - train_Size
+train_data, val_data = torch.utils.data.random_split(train_data[train_Size,val_size])
+
+train_loader = dataloader(train_data, batch_size = 64, shuffle =True)
+val_loader = dataloader(val_data , batch_size = 64, shuffle =False)
+test_loader =dataloader(test_data, batch_size = 64, shuffle =False)
