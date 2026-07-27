@@ -27,3 +27,24 @@ train_data, val_data = torch.utils.data.random_split(train_data[train_Size,val_s
 train_loader = dataloader(train_data, batch_size = 64, shuffle =True)
 val_loader = dataloader(val_data , batch_size = 64, shuffle =False)
 test_loader =dataloader(test_data, batch_size = 64, shuffle =False)
+
+class BatchNormCNN(nn.Module):
+    def __init__(self):
+        super().__init__()
+
+        self.conv1 = nn.Conv2d(1, 16, kernel_size=3,padding=1) 
+        self.bn1 = nn.BatchNorm2d(16)
+        self.relu1 = nn.relu()
+        self.pool1 = nn.MaxPool2d(2, 2)
+        self.dropout1 = nn.Dropout(0.25)
+
+        self.conv2 = nn.Conv2d(16, 32, kernel_size=3,padding=1) 
+        self.bn1 = nn.BatchNorm2d(32)
+        self.relu2 = nn.relu()
+        self.pool2 = nn.MaxPool2d(2, 2)
+        self.dropout2 = nn.Dropout(0.25)
+
+        self.fc1 = nn.Linear(32* 7 * 7, 128)
+        self.relu3 = nn.relu()
+        self.dropout2 = nn.Dropout(0.5)
+        self.fc2 = nn.Linear(128, 10)   
