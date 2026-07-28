@@ -28,7 +28,7 @@ train_loader = dataloader(train_data, batch_size = 64, shuffle =True)
 val_loader = dataloader(val_data , batch_size = 64, shuffle =False)
 test_loader =dataloader(test_data, batch_size = 64, shuffle =False)
 
-class BatchNormCNN(nn.Module):
+class ImprovedCNN(nn.Module):
     def __init__(self):
         super().__init__()
 
@@ -57,3 +57,7 @@ class BatchNormCNN(nn.Module):
         x = self.fc2(x)
         return x
 
+model = ImprovedCNN()
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.AdamW(model.parameters(),lr=0.001, weight_decay=1e-4)
+scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience= 3, factor=0.5)
