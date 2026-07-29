@@ -72,11 +72,26 @@ for epoch in range(50):
     model.train()
     total_train_loss = 0
 
-    for images, labels in val_loader():
+    for images, labels in train_loader():
         optimizer.zero_grad()
         outputs = model(images)
         loss = criterion(outputs, labels)
         loss.backward()
         optimizer.step()
         total_train_loss += loss.item()
-        
+
+    model.eval()
+    total_train_loss = 0
+    correct = 0
+    total = 0
+
+    with torch.no_grad(): 
+        for images,labels in val_loader:
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+            total_val_loss += loss.item()
+            _, predicted = torch.max(outputs, 1)
+            total += labels.size(0)
+            correct +=(predicted == labels).sum().item()
+            
+            
