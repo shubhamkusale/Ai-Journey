@@ -61,3 +61,22 @@ model = ImprovedCNN()
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.AdamW(model.parameters(),lr=0.001, weight_decay=1e-4)
 scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience= 3, factor=0.5)
+
+best_val_loss = float('inf')
+patience = 5
+patience_counter = 0 
+train_losses = []
+val_losses = []
+
+for epoch in range(50):
+    model.train()
+    total_train_loss = 0
+
+    for images, labels in val_loader():
+        optimizer.zero_grad()
+        outputs = model(images)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+        total_train_loss += loss.item()
+        
