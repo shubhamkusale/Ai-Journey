@@ -1,35 +1,29 @@
-we done this week 11 for deep learning of aur neural networks to understand more about pytorch, neaural networks and all 
-EPOCH STARTS
-     ↓
-┌─────────────────────────────────┐
-│  TRAINING PHASE                 │
-│  model.train()                  │
-│                                 │
-│  for each batch (750 batches):  │
-│  1. zero_grad()                 │
-│  2. forward pass                │
-│  3. calculate loss              │
-│  4. backward()                  │
-│  5. step() — update weights     │
-└─────────────────────────────────┘
-     ↓
-┌─────────────────────────────────┐
-│  VALIDATION PHASE               │
-│  model.eval()                   │
-│  torch.no_grad()                │
-│                                 │
-│  for each batch (no learning):  │
-│  - forward pass only            │
-│  - measure loss + accuracy      │
-│  - NO backward, NO step         │
-└─────────────────────────────────┘
-     ↓
-┌─────────────────────────────────┐
-│  AFTER EPOCH                    │
-│  - scheduler checks val_loss    │
-│  - print results                │
-│  - checkpoint if improved       │
-│  - early stop if patience hit   │
-└─────────────────────────────────┘
-     ↓
-NEXT EPOCH (or stop if early stopping)
+# Week 11 — Training Deep Networks Well
+
+## What I learned
+- Overfitting vs Underfitting
+- Dropout (prevent memorization)
+- Batch Normalization (stable training)
+- Learning Rate + ReduceLROnPlateau scheduler
+- AdamW optimizer
+- Early Stopping + Checkpointing
+- Data Augmentation
+- Train/Val Split
+
+## Results
+
+| What I changed | Val Accuracy |
+|----------------|-------------|
+| Baseline (Week 10 MNIST) | ~90% easy dataset |
+| Fashion-MNIST + all techniques | 88.4% harder dataset |
+
+## Model
+- 2 Conv blocks (16→32 filters)
+- Batch Norm + Dropout after each block
+- AdamW optimizer (lr=0.001)
+- Early stopping patience=5
+- Data augmentation (rotation + shift)
+
+## Files
+- `fashion_mnist_improved.py` — full training code
+- `best_fashion_model.pth` — saved best model weights
