@@ -55,3 +55,17 @@ def text_to_numbers(review, vocab, max_len = 10):
 
     return numbers
 
+class ReviewDataset(Dataset):
+    def __init__(self, reviews, labels, vocab, max_len= 10):
+        self.data = []
+        for review, label in zip(reviews, labels):
+            numbers = text_to_numbers(review, labels)
+            self.data.append((
+                torch.tensor(numbers, dtype=torch.long),
+                torch.tensor(label,   dtype=torch.long)
+            ))
+    def __len__(self):
+        return len(self.data)
+    
+    def __getitem__(self, idx):
+        return self.data[idx]
