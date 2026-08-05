@@ -43,3 +43,15 @@ def build_vocab(reviews):
 
 vocab = build_vocab(reviews)
 print(f"Vocabulary size: {len(vocab)}")
+
+def text_to_numbers(review, vocab, max_len = 10):
+    words  = re.sub(r'[^a-z ]', '', review.lower()).split()
+    numbers =[vocab.get(word, 1)for word in words]
+
+    if len(numbers) < max_len:
+        numers = [0]* (max_len - len(numbers)) + numbers
+    else:
+        numbers =numbers[:max_len]
+
+    return numbers
+
