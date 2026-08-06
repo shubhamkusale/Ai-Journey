@@ -69,3 +69,13 @@ class ReviewDataset(Dataset):
     
     def __getitem__(self, idx):
         return self.data[idx]
+
+class SentimentLSTM(nn.module):
+    def __init__(self, vocab_size, embed_size, hidden_size, num_classes):
+        super().__init__()
+
+        self.embedding = nn.Embedding(vocab_size, embed_size, padding_idx=0)
+        self.lstm = nn.LSTM(embed_size, hidden_size, batch_first=True)
+        self.dropout = nn.Dropout(0.3)
+        self.fc = nn.Linear(hidden_size, num_classes)
+        
