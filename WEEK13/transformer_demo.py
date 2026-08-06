@@ -78,4 +78,11 @@ class SentimentLSTM(nn.module):
         self.lstm = nn.LSTM(embed_size, hidden_size, batch_first=True)
         self.dropout = nn.Dropout(0.3)
         self.fc = nn.Linear(hidden_size, num_classes)
-        
+
+    def forward(self, x):
+        x = self.embedding(x)
+        output, (hidden, cell) = self.lstm(x)
+        x = hidden[-1]
+        x = self.dropout(x)
+        x = self.fc(x)
+        return x
