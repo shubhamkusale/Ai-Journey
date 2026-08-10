@@ -86,3 +86,11 @@ class SentimentLSTM(nn.module):
         x = self.dropout(x)
         x = self.fc(x)
         return x
+    
+model = SentimentTransformer(
+    vocab_size  = len(vocab),
+    embed_size  = 32,      # same as LSTM
+    num_heads   = 4,       # NEW — number of attention heads
+    num_layers  = 2,       # NEW — how many transformer layers
+    num_classes = 2
+)
