@@ -1,9 +1,13 @@
 from groq import Groq
+from dotenv import load_dotenv
+import os
 
-client = Groq(api_key="YOUR_API_KEY_HERE")
+load_dotenv()
+
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 response = client.chat.completions.create(
-    model="llama-3.3-70b-versatile",
+    model="openai/gpt-oss-120b",
     messages=[
         {"role": "user", "content": "What is a neural network in one sentence?"}
     ]
