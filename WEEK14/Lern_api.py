@@ -45,4 +45,4 @@ if reply.tool_calls:
     result = calculate(args["expression"])
     print("Tool actually calculated:", result)
 else:
-    print("Model answered directly:", reply.content)
+    print("Model answered directly Yey:", reply.content)
