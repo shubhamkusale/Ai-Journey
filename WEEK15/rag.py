@@ -8,3 +8,7 @@ documents = [
     "The holographic interface uses Three.js for 3D rendering."
 ]
 
+documents_embeddings = embedder.encode(documents)
+
+
+print(documents_embeddings.shape)
