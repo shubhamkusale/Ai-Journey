@@ -1,88 +1,48 @@
-# 🤖 AI-Journey — Building Toward Jarvis
+# Ai-Journey
 
-> *"I am Iron Man"* — the dream that started this journey.
+A self-directed, 52-week AI/ML engineering roadmap — every model built and understood from scratch before using any shortcuts. No bootcamp, no tutor.
 
-**Shubham Kusale** | BCA Student, Sandip University | Nashik, India
-**Goal:** Become an AI/ML Engineer — and build **Jarvis**, a real AI assistant.
-
----
-
-## 🎯 Why I'm Doing This
-
-I'm a college student with one goal: build advanced AI — not just use it. **Build it.**
-
-This is my structured path from beginner to AI engineer. Every week, a real project. Every project a step toward **Jarvis** — my Iron Man-inspired AI assistant. No bootcamp. No shortcuts. A GitHub that proves every step.
+**Currently:** Week 15+ · Building toward [Jarvis](#) (Iron Man-inspired AI assistant) and real-world deployment.
 
 ---
 
-## 🔴 Live Demos — Try Them Now
+## 📂 Weekly Breakdown
 
-| Project | What It Does | Accuracy | Live |
-|---------|-------------|----------|------|
-| 🩺 Breast Cancer Classifier | Predicts malignant vs. benign tumors from 30 cell measurements | 98% (zero missed cancers) | [▶ Live App](https://shubhamkusale-ai-journey-week8app-y2ix2h.streamlit.app/) |
-| 📧 Spam Classifier | Detects spam vs. real messages | 99.2% | [▶ Live App](https://shubhamkusale-ai-journey-week9app-0vgmsk.streamlit.app/) |
-
----
-
-## 🧠 What I've Built So Far
-
-**🔬 Classical Machine Learning**
-- Classifiers: Logistic Regression, SVM, Decision Trees, Random Forests, Naive Bayes, KNN
-- Unsupervised: K-Means clustering, PCA
-- Honest evaluation: precision/recall, confusion matrix, cross-validation
-
-**🧠 Deep Learning**
-- Built & trained a neural network in **PyTorch** from the ground up
-- Real understanding: forward pass, backpropagation, optimizers, activation functions
-
-**🚀 Deployment**
-- Two **live Streamlit apps** (train → save model → serve on the web)
-- Git/GitHub workflow, cloud deployment
-
-**⚙️ Other Builds**
-- Telegram bot — automated daily AI news digest
-- Flutter + Firebase mobile app (real client project)
+| Week | Topic | Highlights |
+|---|---|---|
+| [Week 1](./Week1/Statistical_EDA--Titanic_Dataset) | Statistical EDA | Titanic dataset exploratory analysis |
+| [Week 2](./Week2/numpy-data-analyzer) | NumPy Mastery | Data analyzer built from scratch |
+| [Week 3](./Week3/Titanic_Data_Explorer) | Pandas | Titanic data explorer |
+| [Week 4](./Week4) | Linear Regression | Gradient descent from scratch — Student Performance Predictor |
+| [Week 5](./Week5) | KNN / Classification | Iris classifier from scratch — 100% accuracy |
+| [Week 6](./WEEK6) | Decision Trees / Random Forest | Titanic survival prediction — 82.6% (RF) |
+| [Week 7](./WEEK7) | CNN Fundamentals | MNIST digit classifier — 98%+ accuracy |
+| [Week 8](./WEEK8) | Naive Bayes / NLP | Email spam classifier — 99.2%, deployed on Streamlit |
+| [Week 9](./WEEK9) | Neural Network from Scratch | Pure NumPy — forward pass, backprop, no ML libraries |
+| [Week 10](./WEEK10) | PyTorch CNN | MNIST — 99.10% accuracy, live digit-drawer app deployed |
+| [Week 11](./WEEK11) | Advanced CNN Training | Fashion-MNIST — Dropout, BatchNorm, AdamW, LR scheduler — 88.4% |
+| [Week 12](./WEEK12) | LSTM | Sentiment classifier — 93.8% accuracy |
+| [Week 13](./WEEK13) | Transformers | Sentiment classifier — 100% accuracy; LSTM vs Transformer comparison |
+| [Week 14](./WEEK14) | LLM APIs (Groq) | API calls, memory, chains, tool-calling — secure key handling |
+| [Week 15](./WEEK15) | RAG + Prompt Engineering | Embeddings, cosine similarity, grounded generation, role/few-shot/CoT/constraints |
+| [Week 16](./WEEK16) | Voice Agents | Speech-to-Text (Whisper), Text-to-Speech — *in progress* |
 
 ---
 
-## 🛠️ Tech Stack
+## 🧠 Core Skills Demonstrated
 
-`Python` · `PyTorch` · `scikit-learn` · `pandas` · `NumPy` · `Streamlit` · `Git` · `Flutter` · `Firebase`
-
----
-
-## 🗺️ The Jarvis Roadmap
-
-| Version | Feature | Status |
-|---------|---------|--------|
-| Foundations | Classical ML + Neural Networks | ✅ Done |
-| Deep Learning | CNNs, NLP, Transformers | 🔄 In Progress |
-| V1.0 | Voice AI Assistant | ⏳ Upcoming |
-| V1.5 | Memory (Vector DB) | ⏳ Upcoming |
-| V2.0+ | Knowledge Graph · Multi-Modal · 3D HUD | ⏳ Upcoming |
-
-**Next up:** 🔄 CNN for hazard sound detection (college capstone) · 🔄 Employee attrition predictor
+- **From-scratch ML:** Linear/Logistic Regression, KNN, Decision Trees, Naive Bayes, Neural Networks, CNNs, LSTMs, Transformers — implemented in raw NumPy/PyTorch, not just library calls
+- **LLM Engineering:** API integration, conversational memory, tool-calling, RAG (retrieval-augmented generation), prompt engineering
+- **Deployment:** Streamlit Cloud apps (live, interactive)
+- **Engineering practice:** Secure credential handling (`.env`/`.gitignore`), clean commit history, documented READMEs per project
 
 ---
 
-## 🌟 The Vision
+## 🔗 Links
 
-> Most people use AI tools.
-> I'm building one.
->
-> By my final year, Jarvis won't just be a project —
-> it'll be proof that a student from Nashik
-> can build something real.
->
-> This GitHub is my lab notebook.
-> Every commit is a step toward that Iron Man suit. 🦾
+- GitHub: [github.com/shubhamkusale](https://github.com/shubhamkusale)
+- LinkedIn: [linkedin.com/in/shubham-kusale](https://linkedin.com/in/shubham-kusale)
 
 ---
 
-## 📬 Connect
-
-- **GitHub:** github.com/shubhamkusale
-- **Location:** Nashik, Maharashtra, India
-- **Goal:** AI/ML Engineer · Builder
-
-*"The best way to predict the future is to build it." — Week by week. Commit by commit. 🚀*
+*Each week folder contains its own README with detailed methodology, code, and results.*
