@@ -14,4 +14,15 @@ with open(audio_path, "rb") as audio_file:
         model="whisper-large-v3"
     )
 
-print(transcription.text)
+spoken_text = transcription.text
+print("You said:", spoken_text)
+
+response = client.chat.completions.create(
+    model="openai/gpt-oss-120b",
+    messages=[
+        {"role": "user", "content": spoken_text}
+    ]
+)
+
+answer = response.choices[0].message.content
+print("Jarvis says:", answer)
