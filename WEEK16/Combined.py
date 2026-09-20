@@ -16,3 +16,10 @@ with open(audio_path, "rb") as audio_file:
 
 spoken_text = transcription.text
 print("You said:", spoken_text)
+
+chat_response = client.chat.completions.create(
+    model="openai/gpt-oss-120b",
+    messages=[{"role":"user","content":spoken_text}]
+)
+answer_text = chat_response.choices[0].message.content
+print("jarvis says:", answer_text)
