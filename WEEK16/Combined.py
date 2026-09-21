@@ -2,14 +2,21 @@ from groq import Groq
 from dotenv import load_dotenv
 import os 
 import pyaudio
-
+import sounddevice as sd
+from scipy.io.wavfile import write
 load_dotenv()
-client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-audio_path = os.path.join(BASE_DIR,"Real_speech.wav")
-with open(audio_path, "rb") as audio_file:
-    transcription = client.audio.transcriptions.create(
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+duration = 5  # seconds to record
+sample_rate = 44100
+
+print("Recording... speak now")
+recording = sd.rec(int(duration * sample_rate), samplerate=sample_rate, channels=1)
+sd.wait() 
+write("live_input.wav", sample_rate, recording)
+print("Recording saved.")
+with open("live_input.wav", "rb") as audio_file:
+        transcription = client.audio.transcriptions.create(
         file=audio_file,
         model="whisper-large-v3"
     )
@@ -19,7 +26,7 @@ print("You said:", spoken_text)
 
 chat_response = client.chat.completions.create(
     model="openai/gpt-oss-120b",
-    messages=[{"role":"user","content":spoken_text}]
+    messages=[{"role": "user", "content": spoken_text + " (Answer in 2-3 sentences, conversational tone, since this will be spoken aloud.)"}]
 )
 answer_text = chat_response.choices[0].message.content
 print("jarvis says:", answer_text)
