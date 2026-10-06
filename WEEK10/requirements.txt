@@ -4,3 +4,4 @@ torchvision
 numpy
 Pillow
 streamlit-drawable-canvas
+streamlit-drawable-canvas[image]
