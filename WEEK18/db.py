@@ -1,39 +1,23 @@
-
-import sqlite3
-
-
-def get_connection():
-    return sqlite3.connect("notes.db")
+from WEEK18.try_where import get_connection
 
 
-def create_table():
+def get_note(note_id):
     conn = get_connection()
     cur = conn.cursor()
-
-    cur.execute("""
-        CREATE TABLE IF NOT EXISTS notes (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            text TEXT NOT NULL
-        )
-    """)
-
-    conn.commit()
+    cur.execute("SELECT id, text FROM notes WHERE id = ?", (note_id,))
+    row = cur.fetchone()
     conn.close()
+    if row is None:
+        return None
+    return {"id": row[0], "text": row[1]}
 
-
-def add_note(text):
+def list_notes(limit):
     conn = get_connection()
     cur = conn.cursor()
-
-    cur.execute(
-        "INSERT INTO notes (text) VALUES (?)",
-        (text,)
-    )
-
-    conn.commit()
-
-    note_id = cur.lastrowid
-
+    cur.execute("SELECT id, text FROM notes ORDER BY id LIMIT ?", (limit,))
+    rows = cur.fetchall()
     conn.close()
-
-    return note_id
+    notes = []
+    for row in rows:
+        notes.append({"id": row[0], "text": row[1]})
+    return notes
