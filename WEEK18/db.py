@@ -1,6 +1,3 @@
-from WEEK18.try_where import get_connection
-
-
 def get_note(note_id):
     conn = get_connection()
     cur = conn.cursor()
